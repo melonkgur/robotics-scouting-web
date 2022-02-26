@@ -3,6 +3,7 @@ import { Typography, Button } from "@material-ui/core";
 import Typed from "react-typed";
 import '../fonts.css';
 
+//screamn
 
 const CentralComputer = () => {
     return (
