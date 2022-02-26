@@ -1,5 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 import { Button } from '@material-ui/core';
+import HomeButton from "../components/homebutton";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -17,7 +18,7 @@ const CentralComputer = () => {
 
     return (
         <div className={classes.root}>
-
+            <HomeButton />
         </div>
     )
 }

@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core";
+import HomeButton from "../components/homebutton";
 
 const useStyles = makeStyles( theme => ({
     root: {
@@ -13,7 +14,8 @@ const Scout = () => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <a href="/">Home</a>
+            <HomeButton />
+
         </div>
     )
 }
