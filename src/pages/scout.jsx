@@ -19,8 +19,9 @@ const useStyles = makeStyles( theme => ({
     },
     popupMain: {
         backgroundColor: '#a000a0',
-        width: '15em',
-        height: '15em',
+        width: '20em',
+        height: '20em',
+        padding: '10px',
         borderWidth: '4px',
         borderRadius: '20px',
         marginLeft: '20em',
