@@ -28,6 +28,14 @@ const useStyles = makeStyles( theme => ({
     goToFieldButton: {
         backgroundColor: theme.palette.secondary.main,
         color: '#ffffff'
+    },
+    linkText: {
+        color: theme.palette.secondary.light,
+        fontFamily: 'nice',
+    },
+    anchorLink: {
+        textDecoration: 'none',
+        color: 'inherit'
     }
 }))
 
@@ -64,7 +72,9 @@ const Home = () => {
 
                 } 
                 </Typography >
-                <Button variant="contained" className={classes.goToFieldButton}>Open Field</Button>
+                {/* <Button variant="contained" className={classes.goToFieldButton}>Open Field</Button> */}
+                <Typography className={classes.linkText} variant="h5">0. <a className={classes.anchorLink} href="/#/scout">Scout</a><a style={{marginLeft: '3rem'}} className={classes.anchorLink} href="/#/central-computer">1. Central Computer</a></Typography>
+                {/* <Typography className={classes.linkText} variant="h5">1. <a className={classes.anchorLink} href="/central-computer">Central Computer</a></Typography> */}
             </div>
 
         </div>

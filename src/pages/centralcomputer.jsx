@@ -1,14 +1,23 @@
-import { makeStyles } from "@material-ui/styles";
-import { Typography, Button } from "@material-ui/core";
-import Typed from "react-typed";
-import '../fonts.css';
+import { makeStyles } from "@material-ui/core";
+import { Button } from '@material-ui/core';
 
-//screamn
+const useStyles = makeStyles(theme => ({
+    root: {
+        width: '100vw',
+        height: '100vh',
+        backgroundColor: theme.palette.primary.main
+    },
+
+}))
+
 
 const CentralComputer = () => {
+
+    const classes = useStyles();
+
     return (
-        <div>
-            fdhsajkfhjdaks
+        <div className={classes.root}>
+
         </div>
     )
 }
