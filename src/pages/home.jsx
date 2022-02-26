@@ -59,7 +59,7 @@ const Home = () => {
                         strings={
                             [
                                 'Just',
-                                'Observing',
+                                'Observe',
                                 'Robots',
                                 'Doing',
                                 'Absolutely',
