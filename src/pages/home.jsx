@@ -1,6 +1,7 @@
 import { makeStyles } from "@material-ui/styles";
-import { Typography } from "@material-ui/core";
+import { Typography, Button } from "@material-ui/core";
 import Typed from "react-typed";
+import '../fonts.css';
 
 const useStyles = makeStyles( theme => ({
     root: {
@@ -10,8 +11,22 @@ const useStyles = makeStyles( theme => ({
     },
     title: {
         color: '#ffffff',
+        fontFamily: 'medium',
+        width: '70%',
     },
     introTitle: {
+        color: theme.palette.secondary.main,
+        fontFamily: 'nice',
+    },
+    pink: {
+        color: theme.palette.secondary.main,
+    },
+    kindaCenter: {
+        paddingTop: '17%',
+        paddingLeft: '17%'
+    },
+    goToFieldButton: {
+        backgroundColor: theme.palette.secondary.main,
         color: '#ffffff'
     }
 }))
@@ -21,31 +36,37 @@ const Home = () => {
     const classes = useStyles();
 
     return (
-        <div className={classes.root}>
-            <Typography className={classes.introTitle}>Hey there, welcome to</Typography>
-            <Typography 
-                variant="h2"
-                className={classes.title}
-            >
-            {`Jordan, the scouting software that stands for `}
-            {
-                <Typed 
-                    strings={
-                        [
-                            'Just',
-                            'Observing',
-                            'Robots',
-                            'Doing',
-                            'Absolutely',
-                            'Nothing'
-                        ]
-                    }
-                    typeSpeed={40}
-                    loop
-                />
+            <div className={classes.root}>
+                <div className={classes.kindaCenter}>
 
-            } 
-            </Typography >
+                <Typography className={classes.introTitle}>Hey there, welcome to</Typography>
+                <Typography 
+                    variant="h2"
+                    className={classes.title}
+                >
+                {`Jordan, the scouting software that stands for `}
+                {
+                    <Typed
+                        className={classes.pink} 
+                        strings={
+                            [
+                                'Just',
+                                'Observing',
+                                'Robots',
+                                'Doing',
+                                'Absolutely',
+                                'Nothing'
+                            ]
+                        }
+                        typeSpeed={20}
+                        loop
+                    />
+
+                } 
+                </Typography >
+                <Button variant="contained" className={classes.goToFieldButton}>Open Field</Button>
+            </div>
+
         </div>
     )
 }

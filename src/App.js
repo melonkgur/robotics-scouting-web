@@ -1,5 +1,7 @@
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/home';
+import CentralComputer from './pages/centralcomputer';
+import Scout from './pages/scout';
 import { ThemeProvider } from '@material-ui/core';
 import theme from './helpers/theme';
 
@@ -9,7 +11,9 @@ function App() {
       <HashRouter>
         <ThemeProvider theme={theme}>
           <Routes>
-              <Route path='/' exact element={ <Home/> } />
+              <Route path='/' element={ <Home/> } exact />
+              <Route path='/central-computer' element={ <CentralComputer /> } exact />
+              <Route path='/scout' element={ <Scout /> } exact />
           </Routes>
         </ThemeProvider>
       </HashRouter>
