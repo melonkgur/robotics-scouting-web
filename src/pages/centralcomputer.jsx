@@ -39,27 +39,11 @@ const CentralComputer = () => {
 
 
     const [qrData, setQrData] = useState({ test: 'lol' });
-    const [qrScanShow, setQrScanShow] = useState('flex');
-
-    const previewStyle = {
-        height: '700',
-        width: '1000',
-        display: `${qrScanShow}`,
-        margin: '0',
-        padding: '0',
-    }
 
     const handleError = (err) => {
         console.log(err);
     }
 
-    const handleScan = (result) => {
-        if(qrData !== result && result != null) {
-            setQrData(result);
-            setQrScanShow('none');
-        }
-        console.log(qrData);
-    }
 
     return (
         <div className={classes.root}>
@@ -71,20 +55,30 @@ const CentralComputer = () => {
                     trigger={
                         <Button
                             variant="contained"
-                            onClick={e => {
-                                window.location = '/#/import-data'
-                            }}
+
                             className={classes.addDataButton}
                             endIcon={<AddIcon />}
                         >Import QrCode</Button>
                     }
                 >
 
-                    {close => (
+                    {popupShow => 
                         <div className={classes.popupBackground}>
-                            <button onClick={close}>close</button>
+                            <button onClick={popupShow}>close</button>
+                            <QrReader
+                                onError={handleError}
+                                onScan={(result) => {
+                                    if(qrData !== result && result != null) {
+                                        setQrData(result);
+                                        popupShow();
+                                    }
+                            
+                                    console.log(qrData);
+                                }}
+                            >
+                            </QrReader>
                         </div>
-                    )}
+                    }
 
                 </Popup>
 
