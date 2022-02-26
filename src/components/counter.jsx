@@ -14,6 +14,9 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: '#00af80',
         color: '#0a0a0a',
         borderRadius: '20px',
+        '&:hover': {
+            background: "#00afa0",
+        },
         marginLeft: '5rem',
         width: '10rem',
         height: '3em'
@@ -22,6 +25,9 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: '#af0040',
         color: '#0a0a0a',
         borderRadius: '20px',
+        '&:hover': {
+            background: "#af0020",
+        },
         marginLeft: '5rem',
         width: '10rem',
         height: '3em'
@@ -42,6 +48,9 @@ const useStyles = makeStyles(theme => ({
     title: {
         textAlign: 'center',
         marginTop: '8rem',
+        marginLeft: '1em',
+        marginRight: '1em',
+        fontFamily: 'medium',
         marginBottom: '2rem',
         color: '#ffffff'
     }
@@ -55,25 +64,27 @@ const Counter = (props) => {
     return (
         <div className={classes.container}>
             <Typography
-                variant="h3"
+                variant="h4"
                 className={classes.title}
             >
                 {props.title}
             </Typography>
-            <IconButton className={classes.add} size="medium" onClick={e => {
+            <IconButton className={classes.add} onClick={e => {
                 setCounter(counter+1);
             }}>
-                <AddIcon />
+                <AddIcon fontSize="large"/>
             </IconButton>
 
-            <Typography className={classes.counter}>    
+            <Typography 
+                className={classes.counter}
+            >    
                 {counter}
             </Typography>
 
-            <IconButton className={classes.subtract} size="medium" onClick={e => {
+            <IconButton className={classes.subtract} onClick={e => {
                 if(counter > 0){setCounter(counter-1);}
             }}>
-                <RemoveIcon />
+                <RemoveIcon fontSize="large"/>
             </IconButton>
         </div>
     )

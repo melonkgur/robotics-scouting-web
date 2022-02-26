@@ -16,8 +16,8 @@ const Scout = () => {
     return (
         <div className={classes.root}>
             <HomeButton />
-            <Counter title="ieatbeesforlunch"/>
-            <Counter title="b"/>
+            <Counter title="Im high"/>
+            <Counter title="Im not hithg"/>
         </div>
     )
 }
