@@ -3,7 +3,6 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import { makeStyles } from '@material-ui/core';
 import { useState } from 'react';
-import { palette } from '@mui/system';
 
 const useStyles = makeStyles(theme => ({
     container: {
@@ -37,13 +36,13 @@ const useStyles = makeStyles(theme => ({
         color: '#8a8a8a',
         textAlign: 'center',
         marginLeft: '5em',
-        paddingTop: '4em',
-        paddingBottom: '4em',
+        paddingTop: '5em',
+        paddingBottom: '5em',
         fontFamily: 'medium',
         borderRadius: '20px',
         marginRight: '5em',
-        marginTop: '2em',
-        marginBottom: '2em'
+        marginTop: '0.75em',
+        marginBottom: '0.75em'
     },
     title: {
         textAlign: 'center',
@@ -71,6 +70,7 @@ const Counter = (props) => {
             </Typography>
             <IconButton className={classes.add} onClick={e => {
                 setCounter(counter+1);
+                props.setter(counter+1);
             }}>
                 <AddIcon fontSize="large"/>
             </IconButton>
@@ -82,7 +82,7 @@ const Counter = (props) => {
             </Typography>
 
             <IconButton className={classes.subtract} onClick={e => {
-                if(counter > 0){setCounter(counter-1);}
+                if(counter > 0){setCounter(counter-1);props.setter(counter-1);}
             }}>
                 <RemoveIcon fontSize="large"/>
             </IconButton>
