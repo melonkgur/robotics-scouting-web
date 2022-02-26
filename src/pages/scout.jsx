@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core";
+import Counter from "../components/counter"
 import HomeButton from "../components/homebutton";
 
 const useStyles = makeStyles( theme => ({
@@ -15,7 +16,8 @@ const Scout = () => {
     return (
         <div className={classes.root}>
             <HomeButton />
-
+            <Counter title="ieatbeesforlunch"/>
+            <Counter title="b"/>
         </div>
     )
 }
