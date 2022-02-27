@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Popup from 'reactjs-popup';
 import HomeButton from "../components/homebutton";
 import QRCode from "react-qr-code";
+//import { contextBridge } from "electron/renderer";
 
 const useStyles = makeStyles( theme => ({
     root: {
@@ -48,6 +49,27 @@ function createJson(p_lowGoal, p_highGoal){
     jsonQR = JSON.stringify(data);
 }
 
+function saveQR(){
+    //taken from github react-qr-code page. i dont how someone firgured out 
+    //that this is how to do this in the first place
+    const svg = document.getElementById("codeQR");
+    const svgData = new XMLSerializer().serializeToString(svg);
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+    const img = new Image();
+    img.onload = () => {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0);
+        const pngFile = canvas.toDataURL("image/png");
+        const downloadLink = document.createElement("a");
+        downloadLink.download = "codeQR";
+        downloadLink.href = `${pngFile}`;
+        downloadLink.click();
+    };
+    img.src = `data:image/svg+xml;base64,${btoa(svgData)}`;
+}
+
 const Scout = () => {
 
     const [lowGoal, setLowGoal] = useState(0);
@@ -73,9 +95,12 @@ const Scout = () => {
                 {popupShow =>
                     <div className={classes.popupBackground}>
                         <div className={classes.popupMain}>
-                            <QRCode value={jsonQR} title="jordanoutput"/>
+                            <QRCode id="codeQR" value={jsonQR} title="jordanoutput"/>
                             <button onClick={popupShow}>
                                 close
+                            </button>
+                            <button onClick={saveQR}>
+                                download as png
                             </button>
                         </div>
                     </div>
