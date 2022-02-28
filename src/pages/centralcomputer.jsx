@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 import HomeButton from "../components/homebutton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import QrCodePopup from "../components/qrcodepopup";
 
 
@@ -50,6 +50,21 @@ const CentralComputer = () => {
 
 
     const [qrData, setQrData] = useState({ test: 'lol' });
+
+    const [teamData, setTeamData] = useState();
+
+    useEffect(() => {
+        //get all items from local storage
+        const teams = JSON.parse(localStorage.getItem('teamList'));
+
+        let teamData = [];
+        for(let i = 0; i < teams.length; i++) {
+            let currentTeamData = JSON.parse(localStorage.getItem(`${teams[i]}`));
+            teamData.push(currentTeamData);
+        }
+        setTeamData(teamData);
+    
+    }, []);
 
 
     return (

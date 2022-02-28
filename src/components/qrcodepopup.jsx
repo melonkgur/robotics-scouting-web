@@ -1,8 +1,9 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Popup from "reactjs-popup";
-import { Button } from "@material-ui/core";
+import { Button, IconButton } from "@material-ui/core";
 import AddIcon from "@mui/icons-material/Add";
 import QrReader from "react-qr-scanner";
+import CloseIcon from '@mui/icons-material/Close';
 
 
 const useStyles = makeStyles(theme => ({
@@ -19,8 +20,19 @@ const useStyles = makeStyles(theme => ({
     popupBackground: {
         backgroundColor: '#000000b3',
         height: '100vh',
-        width: '100vw'
+        width: '100vw',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
+    exitButton: {
+        position: 'absolute',
+        top: '1rem',
+        right: '1rem',
+        '&:hover': {
+            background: "#8892B0",
+        }
+    }
 }));
 
 const QrCodePopup = (props) => {
@@ -49,7 +61,9 @@ const QrCodePopup = (props) => {
 
             {popupShow => 
                 <div className={classes.popupBackground}>
-                    <button onClick={popupShow}>close</button>
+                    <IconButton color="secondary" className={classes.exitButton}>
+                        <CloseIcon onClick={popupShow} />
+                    </IconButton>
                     <QrReader
                         onError={handleError}
                         onScan={(result) => {
@@ -59,6 +73,11 @@ const QrCodePopup = (props) => {
                                 let data = JSON.parse(result);
                                 let name = data.teamName;
                                 localStorage.setItem(name, result.toString());
+
+                                //appends the team to the team list
+                                let currentTeamList = localStorage.getItem("teamList");
+                                localStorage.setItem("teamList", currentTeamList + "," + name);
+
                                 
                                 props.setQrData(result);
                                 popupShow();
