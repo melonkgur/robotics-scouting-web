@@ -24,13 +24,15 @@ const useStyles = makeStyles( theme => ({
         width: '100vw',
         display: 'flex',
         justifyContent: 'center',
-        alignitems: 'center'
+        alignItems: 'center'
+
     },
     popupMain: {
         width: 'auto',
         height: 'auto',
         marginTop: '19em',
         padding: '10px',
+        borderRadius: '20px',
     },
     generator: {
         backgroundColor: '#afafaf',
@@ -136,8 +138,11 @@ const Scout = () => {
                             <CloseIcon />
                         </IconButton>
                         <div className={classes.popupMain}>
-                            <QRCode id="codeQR" value={jsonQR} title="jordanoutput" className={classes.qr}/>
-                            <Button onClick={saveQR} className={classes.pngDown}>
+                            <QRCode id="codeQR" value={jsonQR} title="jordanoutput"/>
+                            <Button onClick={popupShow}>
+                                close
+                            </Button>
+                            <Button onClick={saveQR}>
                                 download as png
                             </Button>
                         </div>
