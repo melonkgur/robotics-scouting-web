@@ -1,12 +1,20 @@
-import { makeStyles } from "@mui/material";
+import { makeStyles } from "@material-ui/core/styles";
 import Popup from "reactjs-popup";
+import { Button } from "@material-ui/core";
+import AddIcon from "@mui/icons-material/Add";
+import QrReader from "react-qr-scanner";
 
 
 const useStyles = makeStyles(theme => ({
     addDataButton: {
         backgroundColor: '#32a852',
         color: '#ffffff',
-
+        position: 'absolute',
+        top: '1rem',
+        right: '1rem',
+        '&:hover': {
+            background: "#32a852",
+        }
     },
     popupBackground: {
         backgroundColor: '#000000b3',
@@ -15,7 +23,16 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const QrCodePopup = () => {
+const QrCodePopup = (props) => {
+
+
+    const handleError = (er) => {
+        console.log(er);
+    }
+
+
+    const classes = useStyles();
+
     return (
         <Popup
             modal
@@ -36,12 +53,17 @@ const QrCodePopup = () => {
                     <QrReader
                         onError={handleError}
                         onScan={(result) => {
-                            if(qrData !== result && result != null) {
-                                setQrData(result);
+                            if(props.qrData !== result && result != null) {
+
+                                //stores the qr code data in the local storage
+                                let data = JSON.parse(result);
+                                let name = data.teamName;
+                                localStorage.setItem(name, result.toString());
+                                
+                                props.setQrData(result);
                                 popupShow();
                             }
                     
-                            console.log(qrData);
                         }}
                     >
                     </QrReader>

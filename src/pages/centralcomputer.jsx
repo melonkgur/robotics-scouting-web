@@ -1,10 +1,7 @@
 import { makeStyles } from "@material-ui/core";
-import { Button } from '@material-ui/core';
 import HomeButton from "../components/homebutton";
-import AddIcon from '@mui/icons-material/Add';
 import { useState } from "react";
-import QrReader from 'react-qr-scanner';
-import Popup from 'reactjs-popup';
+import QrCodePopup from "../components/qrcodepopup";
 
 
 
@@ -31,11 +28,12 @@ const useStyles = makeStyles(theme => ({
         width: '100vw'
     },
     searchField: {
-        width: '15rem',
+        width: '20rem',
         backgroundColor: '#ffffff',
         borderRadius: '0.5rem',
         padding: '0.5rem',
         fontSize: '1rem',
+        margin: '3rem'
     },
     mainContent: {
         width: '100vw',
@@ -53,14 +51,11 @@ const CentralComputer = () => {
 
     const [qrData, setQrData] = useState({ test: 'lol' });
 
-    const [teamData, setTeamData] = useState([]);
-
-
 
     return (
         <div className={classes.root}>
             <HomeButton />
-
+            <QrCodePopup qrData={qrData} setQrData={setQrData} />
 
             <div className={classes.mainContent}>
                 <input type="text" placeholder="Search Team" className={classes.searchField} />
