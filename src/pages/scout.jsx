@@ -4,7 +4,7 @@ import Counter from "../components/counter"
 import { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import Popup from 'reactjs-popup';
-import BackButton from "../components/homebutton";
+import BackButton from "../components/backbutton";
 import QRCode from "react-qr-code";
 //TODO: add team name support in json and elsewhere
 //remove backgruoursnd, close icon x in top right 
