@@ -19,7 +19,7 @@ const useStyles = makeStyles( theme => ({
         backgroundColor: theme.palette.primary.main
     },
     popupBackground: {
-        backgroundColor: '#000000b3',
+        backgroundColor: '#ffffffb3',
         height: '100vh',
         width: '100vw',
         display: 'flex',
@@ -45,9 +45,10 @@ const useStyles = makeStyles( theme => ({
         fontSize: '20px',
     },
     exit: {
-        color: '#fff',
+        color: '#000000',
         position: "absolute",
         right: '0',
+        top: '0'
     },
     pngDown: {
         backgroundColor: '#00faa0',
