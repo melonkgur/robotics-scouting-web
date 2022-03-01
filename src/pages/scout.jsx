@@ -4,7 +4,7 @@ import Counter from "../components/counter"
 import { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import Popup from 'reactjs-popup';
-import HomeButton from "../components/homebutton";
+import BackButton from "../components/homebutton";
 import QRCode from "react-qr-code";
 //TODO: add team name support in json and elsewhere
 //remove backgruoursnd, close icon x in top right 
@@ -119,7 +119,7 @@ const Scout = () => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <HomeButton />
+            <BackButton title={'Home'} lastPage={'/'} />
             <div>
             <Counter title="Low Scores" setter={setLowGoal}/>
             <Counter title="High Scores" setter={setHighGoal}/>
