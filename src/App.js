@@ -4,6 +4,7 @@ import CentralComputer from './pages/centralcomputer';
 import Scout from './pages/scout';
 import { ThemeProvider } from '@material-ui/core';
 import theme from './helpers/theme';
+import TeamProfile from './pages/team-profile';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
               <Route path='/' element={ <Home/> } exact />
               <Route path='/central-computer' element={ <CentralComputer /> } exact />
               <Route path='/scout' element={ <Scout /> } exact />
+              <Route path='/team-profile/:teamId' element={ <TeamProfile /> } />
           </Routes>
         </ThemeProvider>
       </HashRouter>

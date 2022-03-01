@@ -1,10 +1,7 @@
 import { makeStyles } from "@material-ui/core";
-import { Button } from '@material-ui/core';
 import HomeButton from "../components/homebutton";
-import AddIcon from '@mui/icons-material/Add';
-import { useState } from "react";
-import QrReader from 'react-qr-scanner';
-import Popup from 'reactjs-popup';
+import { useEffect, useState } from "react";
+import QrCodePopup from "../components/qrcodepopup";
 
 
 
@@ -23,11 +20,25 @@ const useStyles = makeStyles(theme => ({
     addDataButton: {
         backgroundColor: '#32a852',
         color: '#ffffff',
+
     },
     popupBackground: {
         backgroundColor: '#000000b3',
         height: '100vh',
         width: '100vw'
+    },
+    searchField: {
+        width: '20rem',
+        backgroundColor: '#ffffff',
+        borderRadius: '0.5rem',
+        padding: '0.5rem',
+        fontSize: '1rem',
+        margin: '3rem'
+    },
+    mainContent: {
+        width: '100vw',
+        display: 'flex',
+        justifyContent: 'center',
     }
 
 }))
@@ -40,49 +51,31 @@ const CentralComputer = () => {
 
     const [qrData, setQrData] = useState({ test: 'lol' });
 
-    const handleError = (err) => {
-        console.log(err);
-    }
+    const [teamData, setTeamData] = useState();
+
+    useEffect(() => {
+        //get all items from local storage
+        const teams = JSON.parse(localStorage.getItem('teamList'));
+
+        // let teamData = [];
+        // for(let i = 0; i < teams.length(); i++) {
+        //     let currentTeamData = JSON.parse(localStorage.getItem(`${teams[i]}`));
+        //     teamData.push(currentTeamData);
+        // }
+        setTeamData(teamData);
+    
+    }, []);
 
 
     return (
         <div className={classes.root}>
             <HomeButton />
-            <div className={classes.navbarButtons}>
-                <Popup
-                    modal
-                    nested
-                    trigger={
-                        <Button
-                            variant="contained"
+            <QrCodePopup qrData={qrData} setQrData={setQrData} />
 
-                            className={classes.addDataButton}
-                            endIcon={<AddIcon />}
-                        >Import QrCode</Button>
-                    }
-                >
-
-                    {popupShow => 
-                        <div className={classes.popupBackground}>
-                            <button onClick={popupShow}>close</button>
-                            <QrReader
-                                onError={handleError}
-                                onScan={(result) => {
-                                    if(qrData !== result && result != null) {
-                                        setQrData(result);
-                                        popupShow();
-                                    }
-                            
-                                    console.log(qrData);
-                                }}
-                            >
-                            </QrReader>
-                        </div>
-                    }
-
-                </Popup>
-
+            <div className={classes.mainContent}>
+                <input type="text" placeholder="Search Team" className={classes.searchField} />
             </div>
+
         </div>
     )
 }
