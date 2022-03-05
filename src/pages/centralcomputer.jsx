@@ -75,7 +75,7 @@ const CentralComputer = () => {
             <div className={classes.mainContent}>
                 <input type="text" placeholder="Search Team" className={classes.searchField} />
             </div>
-
+            
         </div>
     )
 }
