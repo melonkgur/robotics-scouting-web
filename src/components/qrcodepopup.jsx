@@ -68,12 +68,13 @@ const QrCodePopup = (props) => {
                         onError={handleError}
                         onScan={(result) => {
                             if(props.qrData !== result && result != null) {
-                                console.log(result);
+                                console.log(result.text);
                                 //stores the qr code data in the local storage
                                 let data = JSON.parse(result.text);
-                                let name = data.teamName;
-                                localStorage.setItem(name, result.toString());
-                                
+                                console.log(data);
+                                let name = data.teamId;
+                                localStorage.setItem(name, JSON.stringify(data));
+                                popupShow();
                             }
                     
                         }}

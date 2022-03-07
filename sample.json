@@ -1,5 +1,8 @@
 {
-    "teamName": 484,
-    "highGoalAuto": 1,
-    "lowGoalAuto": 0
+    "teamId":2756,
+    "highGoalAuto":4,
+    "lowGoalAuto":3,
+    "highGoalOperated":3,
+    "lowGoalOperated":4,
+    "notes":"They can climb kinda good"
 }
