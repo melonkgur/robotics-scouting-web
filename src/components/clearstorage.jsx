@@ -1,4 +1,4 @@
-import { Button, T } from '@material-ui/core';
+import { Button, T, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import Popup from 'reactjs-popup';
 
@@ -8,7 +8,10 @@ const useStyles = makeStyles(theme => ({
         position: 'absolute',
         right: '0',
         bottom: '0',
-        backgroundColor: '#ff4f4fx'
+        backgroundColor: '#ff4f4f',
+        bottom: '1rem',
+        right: '1rem',
+        color: '#ffffff'
     },
     popupBackground: {
         backgroundColor: '#000000b3',
@@ -20,9 +23,25 @@ const useStyles = makeStyles(theme => ({
     },
     popupMainContent: {
         backgroundColor: '#ffffff',
-        height: '40vh',
-        width: '30vw',
-
+        height: '20vh',
+        width: '20vw',
+        borderRadius: '1rem',
+        padding: '1rem',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    popupTitle: {
+        fontFamily: 'medium',
+    },
+    confirmationButton: {
+        backgroundColor: '#32a852',
+        color: '#ffffff',
+        width: '50%',
+        marginTop: '2rem',
+        '&:hover': {
+            background: "#32a852",
+        }
     }
 }))
 
@@ -43,7 +62,13 @@ const ClearStorage = () => {
             
                 <div className={classes.popupBackground}>
                     <div className={classes.popupMainContent}>
-                        
+                        <Typography variant='h4' className={classes.popupTitle}>
+                            Are you sure you want to clear all storage?
+                        </Typography>
+                        <Button className={classes.confirmationButton} onClick={() => {
+                            localStorage.clear();
+                            window.location.reload();
+                        }}>Yes, I'm sure</Button>
                     </div>
                 </div>
             
