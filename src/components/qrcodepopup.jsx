@@ -73,7 +73,25 @@ const QrCodePopup = (props) => {
                                 let data = JSON.parse(result.text);
                                 console.log(data);
                                 let name = data.teamId;
-                                localStorage.setItem(name, JSON.stringify(data));
+
+                                //check if the team list exsists
+                                if(localStorage.getItem("teamList") === null) {
+                                    let teamList = [];
+                                    localStorage.setItem("teamList", JSON.stringify(teamList));
+                                }
+
+                                if(localStorage.getItem(name) === null) {
+                                    let oldTeamList = JSON.parse(localStorage.getItem('teamList'));
+                                    console.log(oldTeamList, name);
+                                    oldTeamList.push(JSON.parse(name));
+                                    localStorage.setItem('teamList', `[${JSON.stringify(oldTeamList)}]`);
+                                    localStorage.setItem(name, `[${JSON.stringify(data)}]`);
+                                }
+                                else {
+                                    let oldData = JSON.parse(localStorage.getItem(name));
+                                    oldData.push(data);
+                                    localStorage.setItem(name, JSON.stringify(oldData));
+                                }
                                 popupShow();
                             }
                     
