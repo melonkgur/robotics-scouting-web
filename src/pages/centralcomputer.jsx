@@ -2,6 +2,7 @@ import { makeStyles } from "@material-ui/core";
 import BackButton from "../components/backbutton";
 import { useEffect, useState } from "react";
 import QrCodePopup from "../components/qrcodepopup";
+import ClearStorage from "../components/clearstorage";
 
 
 
@@ -70,6 +71,7 @@ const CentralComputer = () => {
     return (
         <div className={classes.root}>
             <BackButton title={'Home'} lastPage={'/'} />
+            <ClearStorage />
             <QrCodePopup qrData={qrData} setQrData={setQrData} />
 
             <div className={classes.mainContent}>
