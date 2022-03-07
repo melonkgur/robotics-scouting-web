@@ -1,11 +1,16 @@
-import { makeStyles } from "@material-ui/core";
+import { IconButton, makeStyles } from "@material-ui/core";
 import { Button } from '@material-ui/core';
 import Counter from "../components/counter"
 import { useState } from 'react';
+import CloseIcon from '@mui/icons-material/Close';
 import Popup from 'reactjs-popup';
-import HomeButton from "../components/homebutton";
+import BackButton from "../components/backbutton";
 import QRCode from "react-qr-code";
-//import { contextBridge } from "electron/renderer";
+//TODO: add team name support in json and elsewhere
+//remove backgruoursnd, close icon x in top right 
+//download should be green button aligned center image below
+//add support for yup
+//react select, rungs for climing
 
 const useStyles = makeStyles( theme => ({
     root: {
@@ -14,7 +19,7 @@ const useStyles = makeStyles( theme => ({
         backgroundColor: theme.palette.primary.main
     },
     popupBackground: {
-        backgroundColor: '#000000b3',
+        backgroundColor: '#ffffffb3',
         height: '100vh',
         width: '100vw',
         display: 'flex',
@@ -23,17 +28,50 @@ const useStyles = makeStyles( theme => ({
 
     },
     popupMain: {
-        backgroundColor: '#a000a0',
-        width: '20em',
-        height: '20em',
+        height: 'auto',
+        display: 'flex',
+        flexDirection: 'column',
         padding: '10px',
         borderRadius: '20px',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     generator: {
-        backgroundColor: '#af00af',
+        backgroundColor: '#afafaf',
+        '&:hover': {
+            backgroundColor: '#efefef'
+        },
         marginTop: '1em',
         fontSize: '20px',
-        marginLeft: '32em'
+    },
+    exit: {
+        color: '#000000',
+        position: "absolute",
+        right: '0',
+        top: '0'
+    },
+    pngDown: {
+        backgroundColor: '#00faa0',
+        display: 'block',
+        padding: '0',
+        height: '3em',
+        margin: '0',
+        borderRadius: '0px 0px 20px 20px',
+        '&:hover': {
+            backgroundColor: '#00fa20'
+        },
+        width: '100%'
+    },
+    qr: {
+        padding: '0',
+        margin: '0'
+    },
+    getButtonContainer: {
+        marginTop: '8em',
+        display: 'flex',
+        justifyContent: 'center',
+        alignitems: 'center',
+        width: '100%'
     }
 }));
 
@@ -45,6 +83,7 @@ let jsonQR;
 
 function createJson(p_lowGoal, p_highGoal){
     data = {
+        'teamName': 0,
         'lowGoal': p_lowGoal,
         'highGoal': p_highGoal
     }
@@ -80,27 +119,30 @@ const Scout = () => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <HomeButton />
+            <BackButton title={'Home'} lastPage={'/'} />
             <div>
-            <Counter title="Im not high" setter={setLowGoal}/>
-            <Counter title="Im hithg" setter={setHighGoal}/>
+            <Counter title="Low Scores" setter={setLowGoal}/>
+            <Counter title="High Scores" setter={setHighGoal}/>
             </div>
             <Popup
                 modal
                 nested
                 trigger={
+                <div className={classes.getButtonContainer}>
                     <Button className={classes.generator} onclick={createJson(lowGoal, highGoal)}>
                         Generate QR Code
                     </Button>
+                </div>
                 }
             >
                 {popupShow =>
                     <div className={classes.popupBackground}>
+                        <IconButton onClick={popupShow} className={classes.exit}>
+                            <CloseIcon />
+                        </IconButton>
                         <div className={classes.popupMain}>
                             <QRCode id="codeQR" value={jsonQR} title="jordanoutput"/>
-                            <Button onClick={popupShow}>
-                                close
-                            </Button>
+
                             <Button onClick={saveQR}>
                                 download as png
                             </Button>

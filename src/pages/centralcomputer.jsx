@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core";
-import HomeButton from "../components/homebutton";
+import BackButton from "../components/backbutton";
 import { useEffect, useState } from "react";
 import QrCodePopup from "../components/qrcodepopup";
 
@@ -57,25 +57,25 @@ const CentralComputer = () => {
         //get all items from local storage
         const teams = JSON.parse(localStorage.getItem('teamList'));
 
-        let teamData = [];
-        for(let i = 0; i < teams.length; i++) {
-            let currentTeamData = JSON.parse(localStorage.getItem(`${teams[i]}`));
-            teamData.push(currentTeamData);
-        }
-        setTeamData(teamData);
+        // let teamData = [];
+        // for(let i = 0; i < teams.length(); i++) {
+        //     let currentTeamData = JSON.parse(localStorage.getItem(`${teams[i]}`));
+        //     teamData.push(currentTeamData);
+        // }
+        setTeamData(teams);
     
     }, []);
 
 
     return (
         <div className={classes.root}>
-            <HomeButton />
+            <BackButton title={'Home'} lastPage={'/'} />
             <QrCodePopup qrData={qrData} setQrData={setQrData} />
 
             <div className={classes.mainContent}>
                 <input type="text" placeholder="Search Team" className={classes.searchField} />
             </div>
-
+            
         </div>
     )
 }
