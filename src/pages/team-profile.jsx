@@ -31,7 +31,7 @@ const TeamProfile = () => {
     return (
         <div className={classes.root}>
             {/*Fetches localstorage data depending on the team (react-router)*/}
-            <BackButton title="Team List" lastPage="/central-computer" />
+            <BackButton title="Team List" lastPage="/#/central-computer" />
         </div>
     )
 }

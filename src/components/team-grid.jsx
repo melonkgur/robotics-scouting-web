@@ -28,9 +28,13 @@ const TeamGrid = (props) => {
         setTeams(teamList);
     }, [])
 
+    const filtedTeams = teams.filter(team => {
+        return team.toString().includes(props.searchField);
+    })
+
     return (
         <div className={classes.teamGrid}>
-            {teams.map(team => {
+            {filtedTeams.map(team => {
                 return (
                     <TeamGridItem team={team} />
                 )

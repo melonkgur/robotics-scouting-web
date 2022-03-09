@@ -52,7 +52,7 @@ const CentralComputer = () => {
 
     const [qrData, setQrData] = useState({ test: 'lol' });
 
-    const [teamData, setTeamData] = useState();
+    const [searchParam, setSearchParam] = useState('');
 
 
     return (
@@ -62,9 +62,9 @@ const CentralComputer = () => {
             <QrCodePopup qrData={qrData} setQrData={setQrData} />
 
             <div className={classes.mainContent}>
-                <input type="text" placeholder="Search Team" className={classes.searchField} />
+                <input type="text" placeholder="Search Team" className={classes.searchField} onChange={e => setSearchParam(e.target.value)} />
             </div>
-            <TeamGrid />
+            <TeamGrid searchField={searchParam} />
         </div>
     )
 }
