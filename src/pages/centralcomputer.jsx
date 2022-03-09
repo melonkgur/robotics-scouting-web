@@ -3,7 +3,7 @@ import BackButton from "../components/backbutton";
 import { useEffect, useState } from "react";
 import QrCodePopup from "../components/qrcodepopup";
 import ClearStorage from "../components/clearstorage";
-
+import TeamGrid from "../components/team-grid";
 
 
 const useStyles = makeStyles(theme => ({
@@ -56,15 +56,13 @@ const CentralComputer = () => {
 
     useEffect(() => {
         //get all items from local storage
-        const teams = JSON.parse(localStorage.getItem('teamList'));
-
-        // let teamData = [];
-        // for(let i = 0; i < teams.length(); i++) {
-        //     let currentTeamData = JSON.parse(localStorage.getItem(`${teams[i]}`));
-        //     teamData.push(currentTeamData);
-        // }
-        setTeamData(teams);
-    
+        const teamList = JSON.parse(localStorage.getItem('teamList'));
+        let teamData = [];
+        for(let i = 0; i < teamList.length; i++) {
+            teamData.push(teamList[i]);
+        }
+        setTeamData(teamData);
+        console.log(teamData);
     }, []);
 
 
@@ -77,7 +75,7 @@ const CentralComputer = () => {
             <div className={classes.mainContent}>
                 <input type="text" placeholder="Search Team" className={classes.searchField} />
             </div>
-            
+            <TeamGrid teamData={teamData} />
         </div>
     )
 }

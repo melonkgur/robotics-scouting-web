@@ -1,4 +1,5 @@
 import { Grid, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
 
 
 const useStyles = makeStyles(theme => ({
@@ -15,13 +16,9 @@ const TeamGrid = (props) => {
 
     return (
         <Grid container spacing={2}>
-            {props.teams.map(team => {
-                <Grid item xs={4} className={classes.gridItem}>
-                    <Typography>
-                        {team.teamName}
-                    </Typography>
-                </Grid>
-            })}
+            <Grid item xs={12} className={classes.gridItem}>
+                {console.log(props.teamData)}
+            </Grid>
         </Grid>
     )
 }
