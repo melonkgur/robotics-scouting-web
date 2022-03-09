@@ -3,7 +3,7 @@ import BackButton from "../components/backbutton";
 import { useEffect, useState } from "react";
 import QrCodePopup from "../components/qrcodepopup";
 import ClearStorage from "../components/clearstorage";
-
+import TeamGrid from "../components/team-grid";
 
 
 const useStyles = makeStyles(theme => ({
@@ -77,7 +77,7 @@ const CentralComputer = () => {
             <div className={classes.mainContent}>
                 <input type="text" placeholder="Search Team" className={classes.searchField} />
             </div>
-            
+            <TeamGrid teams={}/>
         </div>
     )
 }

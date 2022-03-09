@@ -15,13 +15,7 @@ const TeamGrid = (props) => {
 
     return (
         <Grid container spacing={2}>
-            {props.teams.map(team => {
-                <Grid item xs={4} className={classes.gridItem}>
-                    <Typography>
-                        {team.teamName}
-                    </Typography>
-                </Grid>
-            })}
+            {console.log(props.teams)}
         </Grid>
     )
 }
