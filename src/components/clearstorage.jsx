@@ -11,7 +11,10 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: '#ff4f4f',
         bottom: '1rem',
         right: '1rem',
-        color: '#ffffff'
+        color: '#ffffff',
+        '&:hover': {
+            backgroundColor: '#ff4f4f',
+        }
     },
     popupBackground: {
         backgroundColor: '#000000b3',
