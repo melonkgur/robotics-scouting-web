@@ -6,6 +6,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Popup from 'reactjs-popup';
 import BackButton from "../components/backbutton";
 import QRCode from "react-qr-code";
+import '../fonts.css';
 //TODO: add team name support in json and elsewhere
 //remove backgruoursnd, close icon x in top right 
 //download should be green button aligned center image below
@@ -43,6 +44,7 @@ const useStyles = makeStyles( theme => ({
         },
         marginTop: '1em',
         fontSize: '20px',
+        fontFamily: 'medium'
     },
     exit: {
         color: '#000000',

@@ -1,4 +1,5 @@
 import { createTheme } from "@material-ui/core";
+import '../fonts.css';
 
 
 const theme = createTheme({
@@ -11,11 +12,7 @@ const theme = createTheme({
             light: '#8892B0'
         }
     },
-    typography: {
-        fontFamily: {
 
-        }
-    }
 })
 
 export default theme;
