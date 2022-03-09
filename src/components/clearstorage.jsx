@@ -1,6 +1,7 @@
 import { Button, T, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import Popup from 'reactjs-popup';
+import '../fonts.css';
 
 
 const useStyles = makeStyles(theme => ({
@@ -14,7 +15,8 @@ const useStyles = makeStyles(theme => ({
         color: '#ffffff',
         '&:hover': {
             backgroundColor: '#ff4f4f',
-        }
+        },
+        fontFamily: 'medium',
     },
     popupBackground: {
         backgroundColor: '#000000b3',

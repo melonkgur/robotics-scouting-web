@@ -4,6 +4,7 @@ import { Button, IconButton } from "@material-ui/core";
 import AddIcon from "@mui/icons-material/Add";
 import QrReader from "react-qr-scanner";
 import CloseIcon from '@mui/icons-material/Close';
+import '../fonts.css';
 
 
 const useStyles = makeStyles(theme => ({
@@ -15,7 +16,8 @@ const useStyles = makeStyles(theme => ({
         right: '1rem',
         '&:hover': {
             background: "#32a852",
-        }
+        },
+        fontFamily: 'medium',
     },
     popupBackground: {
         backgroundColor: '#000000b3',
