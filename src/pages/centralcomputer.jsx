@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
     root: {
         width: '100vw',
         height: '100vh',
-        backgroundColor: theme.palette.primary.main
+        backgroundColor: theme.palette.primary.main,
     },
     navbarButtons: {
         width: '100vw',
@@ -54,19 +54,6 @@ const CentralComputer = () => {
 
     const [teamData, setTeamData] = useState();
 
-    useEffect(() => {
-        //get all items from local storage
-        const teams = JSON.parse(localStorage.getItem('teamList'));
-
-        // let teamData = [];
-        // for(let i = 0; i < teams.length(); i++) {
-        //     let currentTeamData = JSON.parse(localStorage.getItem(`${teams[i]}`));
-        //     teamData.push(currentTeamData);
-        // }
-        setTeamData(teams);
-    
-    }, []);
-
 
     return (
         <div className={classes.root}>
@@ -77,7 +64,7 @@ const CentralComputer = () => {
             <div className={classes.mainContent}>
                 <input type="text" placeholder="Search Team" className={classes.searchField} />
             </div>
-            <TeamGrid teams={}/>
+            <TeamGrid />
         </div>
     )
 }

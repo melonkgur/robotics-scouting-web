@@ -1,10 +1,15 @@
-import { Grid, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/styles";
+import { useEffect, useState } from "react";
+import TeamGridItem from "./team-grid-item";
 
 
 const useStyles = makeStyles(theme => ({
-    gridItem: {
-        display: 'flex',
-        flexDirection: 'column'
+    teamGrid: {
+        width: '70vw',
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr 1fr',
+        gridGap: '20px',
+        margin: '0 auto'
     }
 }))
 
@@ -13,10 +18,24 @@ const TeamGrid = (props) => {
 
     const classes = useStyles();
 
+    const [teams, setTeams] = useState([]);
+
+    useEffect(() => {
+        let teamList = [];
+        if(localStorage.getItem('teamList') != null) {
+            teamList = JSON.parse(localStorage.getItem('teamList'));
+        }
+        setTeams(teamList);
+    }, [])
+
     return (
-        <Grid container spacing={2}>
-            {console.log(props.teams)}
-        </Grid>
+        <div className={classes.teamGrid}>
+            {teams.map(team => {
+                return (
+                    <TeamGridItem team={team} />
+                )
+            })}
+        </div>
     )
 }
 
