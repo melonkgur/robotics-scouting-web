@@ -95,6 +95,7 @@ const QrCodePopup = (props) => {
                                     localStorage.setItem(name, JSON.stringify(oldData));
                                 }
                                 popupShow();
+                                window.location.reload();
                             }
                     
                         }}

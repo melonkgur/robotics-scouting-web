@@ -6,8 +6,8 @@ import '../fonts.css';
 
 const useStyles = makeStyles(theme => ({
     gridItem: {
-        height: '30vh',
-        backgroundColor: '#5d615e',
+        height: '40vh',
+        backgroundColor: '#696969',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
