@@ -2,7 +2,7 @@ import  { useParams } from "react-router-dom";
 import { makeStyles } from '@material-ui/core';
 import BackButton from "../components/backbutton";
 import { useEffect, useState } from "react";
-import { DataGrid } from '@mui/x-data-grid';
+import DataGrid from 'react-data-grid';
 import '../fonts.css';
 
 
@@ -17,34 +17,28 @@ const useStyles = makeStyles(theme => ({
 
 const columnsTeleop = [
     {
-        field: 'id', 
-        headerName: 'Match Number', 
-        width: 190
+        key: 'id', 
+        name: 'Match Number', 
     },
     {
-        field: 'highGoalAttempts',
-        headerName: 'High Goal Attempts',
-        width: 190
+        key: 'highGoalAttempts',
+        name: 'High Goal Attempts',
     },
     {
-        field: 'highGoalMade',
-        headerName: 'High goal Made',
-        width: 190
+        key: 'highGoalMade',
+        name: 'High goal Made',
     },
     {
-        field: 'lowGoalAttempts',
-        headerName: 'Low Goal Attempts',
-        width: 190
+        key: 'lowGoalAttempts',
+        name: 'Low Goal Attempts',
     },
     {
-        field: 'lowGoalMade',
-        headerName: 'Low Goal Made',
-        width: 190
+        key: 'lowGoalMade',
+        name: 'Low Goal Made',
     },
     {
-        field: 'climbAbility',
-        headerName: 'Bar Climbed To',
-        width: 190
+        key: 'climbAbility',
+        name: 'Bar Climbed To',
     }
 ];
 
@@ -79,14 +73,10 @@ const TeamProfile = () => {
         <div className={classes.root}>
             {/*Fetches localstorage data depending on the team (react-router)*/}
             <BackButton title="Team List" lastPage="/#/central-computer" />
-            <DataGrid
-                style={{ height: '400px', width: '80%', top: '30%', fontFamily: 'medium', color: '#ffffff' }}
-                rows={rows}
+            <DataGrid 
                 columns={columnsTeleop}
-
-            >
-
-            </DataGrid>
+                rots={rows}
+            />
         </div>
     )
 }
