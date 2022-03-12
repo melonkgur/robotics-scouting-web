@@ -38,12 +38,46 @@ const Leaderboard = () => {
 
     const [rowDefs, setRowDefs] = useState([]);
 
+    /* 
+    JSON Format:
+    {
+        "High Goal Auto Average": fkjldasfda,
+    }
+    */
+
     useEffect(() => {
         let teams =  JSON.parse(localStorage.getItem('teamList'));
         console.log(teams);
         teams.forEach(element => {
             let teamData = JSON.parse(localStorage.getItem(`${element}`));
-            console.log(teamData);
+            let gamesPlayed = teamData.length;
+
+            //Totals
+            let HighGoalAutoTotal = 0;
+            let LowGoalAutoTotal = 0;
+            let HighGoalTeleopTotal = 0;
+            let LowGoalTeleopTotal = 0;
+            let ClimberPointsTotal = 0;
+
+            teamData.forEach(game => {
+                HighGoalAutoTotal += game.highGoalAuto;
+                LowGoalAutoTotal += game.lowGoalAuto;
+                HighGoalTeleopTotal += game.highGoalOperated;
+                LowGoalTeleopTotal += game.lowGoalOperated;
+            })
+            console.log(teamData, element);
+
+            let teamJSON = {
+                "Team Number": element[0],
+                "High Goal Auto Average": HighGoalAutoTotal/gamesPlayed,
+                "Low Goal Auto Average": LowGoalAutoTotal/gamesPlayed,
+                "High Goal Teleop Average": HighGoalTeleopTotal/gamesPlayed,
+                "Low Goal Teleop Average": LowGoalTeleopTotal/gamesPlayed,
+                "Climbpoint Average": ClimberPointsTotal/gamesPlayed
+
+            };
+            setRowDefs(rowDefs.concat(teamJSON));
+            console.log(rowDefs);
         })
 
     }, [])
