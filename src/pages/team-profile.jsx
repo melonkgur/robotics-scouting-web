@@ -1,5 +1,5 @@
 import  { useParams } from "react-router-dom";
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Typography } from '@material-ui/core';
 import BackButton from "../components/backbutton";
 import { useEffect, useState } from "react";
 
@@ -19,6 +19,11 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
         flexDirection: 'column'
     },
+    sectionTitle: {
+        color: '#ffffff',
+        fontFamily: 'medium',
+        marginTop: '3rem'
+    }
 }))
 
 
@@ -65,13 +70,19 @@ const TeamProfile = () => {
         <div className={classes.root}>
             {/*Fetches localstorage data depending on the team (react-router)*/}
             <BackButton title="Team List" lastPage="/#/central-computer" />
-            <div className="ag-theme-alpine-dark" style={{height: 200, width: 1200, marginTop: '10%'}}>
+            <Typography variant="h2" className={classes.sectionTitle}>
+                    Autonomous
+            </Typography>
+            <div className="ag-theme-alpine-dark" style={{height: 200, width: 1200 }}>
                 <AgGridReact 
                     rowData={teleopRowData}
                     columnDefs={teleopColumnDefs}
                 />
             </div>
-            <div className="ag-theme-alpine-dark" style={{height: 200, width: 1200, marginTop: '4%'}}>
+            <Typography variant="h2" className={classes.sectionTitle}>
+                    Teleop
+            </Typography>
+            <div className="ag-theme-alpine-dark" style={{height: 200, width: 1200 }}>
                 <AgGridReact 
                     columnDefs={autoColumnDefs}
                     rowData={autoRowData}

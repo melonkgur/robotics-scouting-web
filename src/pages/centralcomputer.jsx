@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import QrCodePopup from "../components/qrcodepopup";
 import ClearStorage from "../components/clearstorage";
 import TeamGrid from "../components/team-grid";
+import LeaderboardButton from "../components/leaderboardbutton";
 
 
 const useStyles = makeStyles(theme => ({
@@ -58,6 +59,7 @@ const CentralComputer = () => {
     return (
         <div className={classes.root}>
             <BackButton title={'Home'} lastPage={'/'} />
+            <LeaderboardButton />
             <ClearStorage />
             <QrCodePopup qrData={qrData} setQrData={setQrData} />
 
