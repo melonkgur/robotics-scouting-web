@@ -71,21 +71,21 @@ const TeamProfile = () => {
             {/*Fetches localstorage data depending on the team (react-router)*/}
             <BackButton title="Team List" lastPage="/#/central-computer" />
             <Typography variant="h2" className={classes.sectionTitle}>
-                    Autonomous
-            </Typography>
-            <div className="ag-theme-alpine-dark" style={{height: 200, width: 1200 }}>
-                <AgGridReact 
-                    rowData={teleopRowData}
-                    columnDefs={teleopColumnDefs}
-                />
-            </div>
-            <Typography variant="h2" className={classes.sectionTitle}>
                     Teleop
             </Typography>
             <div className="ag-theme-alpine-dark" style={{height: 200, width: 1200 }}>
                 <AgGridReact 
                     columnDefs={autoColumnDefs}
                     rowData={autoRowData}
+                />
+            </div>
+            <Typography variant="h2" className={classes.sectionTitle}>
+                    Autonomous
+            </Typography>
+            <div className="ag-theme-alpine-dark" style={{height: 200, width: 1200 }}>
+                <AgGridReact 
+                    rowData={teleopRowData}
+                    columnDefs={teleopColumnDefs}
                 />
             </div>
 
