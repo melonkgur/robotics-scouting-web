@@ -56,6 +56,10 @@ const TeamGridItem = (props) => {
 
     }, []);
 
+    if(!nickName) {
+        return <div></div>
+    }
+
 
     return  (
         <a href={`/#/team-profile/${props.team}`} style={{ textDecoration: 'none' }}>

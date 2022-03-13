@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-const TeamGrid = () => {
+const TeamGrid = (props) => {
 
     const classes = useStyles();
 
@@ -26,12 +26,16 @@ const TeamGrid = () => {
         if(localStorage.getItem('teamList') != null) {
             teamList = JSON.parse(localStorage.getItem('teamList'));
         }
+        setTeams(teamList);
     }, []);
 
+    const filteredTeams = teams.filter(team => team.toString().includes(props.searchField));
 
     return (
         <div className={classes.teamGrid}>
-            
+            {filteredTeams.map(team => {
+                return <TeamGridItem key={team.id} team={team} />
+            })}
         </div>
     )
 }
