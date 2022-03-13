@@ -15,42 +15,23 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-const TeamGrid = (props) => {
+const TeamGrid = () => {
 
     const classes = useStyles();
 
     const [teams, setTeams] = useState([]);
 
-    useEffect(() => {
+    useEffect( () => {
         let teamList = [];
         if(localStorage.getItem('teamList') != null) {
             teamList = JSON.parse(localStorage.getItem('teamList'));
         }
-        setTeams(teamList);
     }, []);
 
-    let getTeamNickName = async (teamNumber) => {
-        let teamNickName = '';
-        await axios.get(`https://www.thebluealliance.com/api/v3/team/frc${teamNumber}`, {
-            headers:  {
-                'X-TBA-Auth-Key': '2RlFFFGFtkzhlFVcMD2dsNKcTO12lBqHbz7ZIwVaqLfSK0xtsv8TAZngRZOFc5E7'
-            }
-        }).then(res => teamNickName = res.data.nickname);
-        console.log(teamNickName);
-        return teamNickName;
-    }
-
-    const filtedTeams = teams.filter(  (team) => {
-        return team.toString().includes(props.searchField);
-    })
 
     return (
         <div className={classes.teamGrid}>
-            {filtedTeams.map(team => {
-                return (
-                    <TeamGridItem team={team} />
-                )
-            })}
+            
         </div>
     )
 }
