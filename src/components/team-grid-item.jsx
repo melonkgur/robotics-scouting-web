@@ -1,6 +1,7 @@
 import { makeStyles } from "@material-ui/styles";
 import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+import axios from 'axios';
 import '../fonts.css';
 
 
@@ -24,7 +25,14 @@ const useStyles = makeStyles(theme => ({
         fontSize: '3rem',
         fontFamily: 'medium',
         padding: '0',
-        margin: '0.5rem'
+        margin: '0'
+    },
+    nickNameTitle: {
+        color: '#ffffff',
+        padding: 0,
+        margin: 0,
+        fontSize: '1.5rem',
+        fontFamily: 'medium'
     }
 }))
 
@@ -33,10 +41,19 @@ const TeamGridItem = (props) => {
     const classes = useStyles();
 
     const [teamData, setTeamData] = useState([])
+    const [nickName, setNickName] = useState('');
 
     useEffect(() => {
         let teamData = JSON.parse(localStorage.getItem(`${props.team}`));
         setTeamData(teamData);
+        let teamNumber = props.team[0].toString();
+
+        axios.get(`https://www.thebluealliance.com/api/v3/team/frc${teamNumber}`, {
+            headers:  {
+                'X-TBA-Auth-Key': '2RlFFFGFtkzhlFVcMD2dsNKcTO12lBqHbz7ZIwVaqLfSK0xtsv8TAZngRZOFc5E7'
+            }
+        }).then(res => setNickName(res.data.nickname));
+
     }, []);
 
 
@@ -46,6 +63,7 @@ const TeamGridItem = (props) => {
                 <h2 className={classes.teamTitle}>
                     {props.team}
                 </h2>
+                <h4 className={classes.nickNameTitle}>{nickName}</h4>
             </div>
         </a>
     )
