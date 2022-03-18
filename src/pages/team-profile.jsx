@@ -32,37 +32,47 @@ const TeamProfile = () => {
     const teamNumber = useParams();
     const classes = useStyles();
 
-    const [teamData, setTeamData] = useState();
-
-    const [autoColumnDefs] = useState([
-        { field: "Match Number", sortable: true, filter: true },
-        { field: "High Goal Teleop", sortable: true, filter: true },
-        { field: "Low Goal Teleop", sortable: true, filter: true },
-        { field: "Rung Climbed To", sortable: true, filter: true },
-        { field: "Notes", sortable: true, filter: true, width: 400 }
+    const [teleopColumnDefs] = useState([
+        { field: "Match Number", sortable: true, filter: true, width: 300  },
+        { field: "High Goal Teleop", sortable: true, filter: true, width: 300  },
+        { field: "Low Goal Teleop", sortable: true, filter: true, width: 300  },
+        { field: "Rung Climbed To", sortable: true, filter: true, width: 300 },
     ]); 
 
-    const [autoRowData] = useState([
-        { "Match Number": 5, "High Goal Teleop": 3, "Low Goal Teleop": 7, "Rung Climbed To": "Mid", "Notes": "Had troubles climbing towards the end" }
-    ])
+    const [autoRowData, setAutoRowData] = useState([]);
 
-    const [teleopColumnDefs] = useState([
-        { field: "Match Number", sortable: true, filter: true },
-        { field: "High Goal Auto", sortable: true, filter: true },
-        { field: "Low Goal Auto", sortable: true, filter: true },
-        { field: "Time To Taxi", sortable: true, filter: true },
-        { field: "Notes", sortable: true, filter: true, width: 400 }
+    const [autoColumnDefs] = useState([
+        { field: "Match Number", sortable: true, filter: true, width: 300  },
+        { field: "High Goal Auto", sortable: true, filter: true, width: 300  },
+        { field: "Low Goal Auto", sortable: true, filter: true, width: 300  },
+        { field: "Taxi", sortable: true, filter: true, width: 300  }
     ]);
 
-    const [teleopRowData] = useState([
-        { "Match Number": 4, "High Goal Auto": 5, "Low Goal Auto": 3, "Time To Taxi": 10, Notes: "Intake bed, can't cycle effeciently" }
-    ]);
+    const [teleopRowData, setTeleopRowData] = useState([]);
 
 
     useEffect(() => {
         let data = [];
-        data = localStorage.getItem(`${teamNumber}`);
-        setTeamData(data);
+        data = localStorage.getItem(`${teamNumber.teamId}`);
+        console.log(data);
+        JSON.parse(data).forEach((element, index) => {
+            let currentTeleop = {
+                "Match Number": element.matchId, 
+                "High Goal Teleop": element.highGoalOperated,
+                "Low Goal Teleop": element.lowGoalOperated,
+                "Rung Goal Teleop": element.rungClimedTo,
+            };
+            let currentAuto = {
+                "Match Number": element.matchId,
+                "High Goal Auto": element.highGoalx,
+                "Low Goal Auto": element.lowGoalAuto,
+                "Taxi": element.taxi
+            }
+            console.log(JSON.parse(data));
+            setTeleopRowData(teleopRowData.concat(currentTeleop));
+            setAutoRowData(autoRowData.concat(currentAuto));
+
+        })
     }, []);
 
 
@@ -73,19 +83,19 @@ const TeamProfile = () => {
             <Typography variant="h2" className={classes.sectionTitle}>
                     Teleop
             </Typography>
-            <div className="ag-theme-alpine-dark" style={{height: 200, width: 1200 }}>
+            <div className="ag-theme-alpine-dark" style={{height: 400, width: 1200 }}>
                 <AgGridReact 
-                    columnDefs={autoColumnDefs}
-                    rowData={autoRowData}
+                    columnDefs={teleopColumnDefs}
+                    rowData={teleopRowData}
                 />
             </div>
             <Typography variant="h2" className={classes.sectionTitle}>
                     Autonomous
             </Typography>
-            <div className="ag-theme-alpine-dark" style={{height: 200, width: 1200 }}>
+            <div className="ag-theme-alpine-dark" style={{height: 400, width: 1200 }}>
                 <AgGridReact 
-                    rowData={teleopRowData}
-                    columnDefs={teleopColumnDefs}
+                    rowData={autoRowData}
+                    columnDefs={autoColumnDefs}
                 />
             </div>
 

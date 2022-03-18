@@ -1,8 +1,7 @@
 import { makeStyles } from "@material-ui/styles";
-import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import axios from 'axios';
 import '../fonts.css';
+import axios from 'axios';
 
 
 const useStyles = makeStyles(theme => ({
@@ -55,10 +54,6 @@ const TeamGridItem = (props) => {
         }).then(res => setNickName(res.data.nickname));
 
     }, []);
-
-    if(!nickName) {
-        return <div></div>
-    }
 
 
     return  (

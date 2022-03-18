@@ -1,7 +1,6 @@
 import { makeStyles } from "@material-ui/styles";
 import { useEffect, useState } from "react";
 import TeamGridItem from "./team-grid-item";
-import axios from 'axios';
 
 
 const useStyles = makeStyles(theme => ({
