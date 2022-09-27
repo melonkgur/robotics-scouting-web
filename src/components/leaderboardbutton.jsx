@@ -8,13 +8,12 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
 
 const useStyles = makeStyles(theme => ({
     leaderboardButton: {
-        backgroundColor: '#3256a8',
-        color: '#ffffff',
-        position: 'absolute',
-        bottom: '1rem',
-        right: '1rem',
+        textTransform: 'none',
+        backgroundColor: '#ffffff',
+        color: '#000000',
         '&:hover': {
-            backgroundColor: '#3256a8'
+            backgroundColor: '#E879F9',
+            color: '#ffffff'
         }
     }
 }))
@@ -25,7 +24,7 @@ const LeaderboardButton = () => {
 
 
     return (
-        <a href="/#/leaderboard">
+        <a style={{ textDecoration: 'none' }} href="/#/leaderboard">
             <Button variant="contained" className={classes.leaderboardButton}>
                 Leaderboard Averages
             </Button>

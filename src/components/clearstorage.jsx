@@ -6,15 +6,12 @@ import '../fonts.css';
 
 const useStyles = makeStyles(theme => ({
     clearStorageButton: {
-        position: 'absolute',
-        left: '0',
-        bottom: '0',
-        backgroundColor: '#ff4f4f',
-        bottom: '1rem',
-        left: '1rem',
-        color: '#ffffff',
+        backgroundColor: '#ffffff',
+        color: '#000000',
+        textTransform: 'none',
         '&:hover': {
-            backgroundColor: '#ff4f4f',
+            backgroundColor: '#E879F9',
+            color: '#ffffff'
         },
         fontFamily: 'medium',
     },

@@ -28,11 +28,10 @@ const TeamGrid = (props) => {
         setTeams(teamList);
     }, []);
 
-    const filteredTeams = teams.filter(team => team.toString().includes(props.searchField));
 
     return (
         <div className={classes.teamGrid}>
-            {filteredTeams.map(team => {
+            {teams.map(team => {
                 return <TeamGridItem key={team.id} team={team} />
             })}
         </div>

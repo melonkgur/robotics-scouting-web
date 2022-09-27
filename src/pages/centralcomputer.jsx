@@ -10,7 +10,7 @@ import LeaderboardButton from "../components/leaderboardbutton";
 const useStyles = makeStyles(theme => ({
     root: {
         width: '100vw',
-        height: '100vh',
+        height: '200vh',
         backgroundColor: theme.palette.primary.main,
     },
     navbarButtons: {
@@ -41,6 +41,15 @@ const useStyles = makeStyles(theme => ({
         width: '100vw',
         display: 'flex',
         justifyContent: 'center',
+    },
+    buttons: {
+        position: 'absolute',
+        bottom: '3rem',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: '37vw',
+        display: 'flex',
+        justifyContent: 'space-between'
     }
 
 }))
@@ -59,9 +68,11 @@ const CentralComputer = () => {
     return (
         <div className={classes.root}>
             <BackButton title={'Home'} lastPage={'/'} />
-            <LeaderboardButton />
-            <ClearStorage />
-            <QrCodePopup qrData={qrData} setQrData={setQrData} />
+            <div className={classes.buttons}>
+                <LeaderboardButton />
+                <ClearStorage />
+                <QrCodePopup qrData={qrData} setQrData={setQrData} />
+            </div>
 
             <div className={classes.mainContent}>
                 <input type="text" placeholder="Search Team" className={classes.searchField} onChange={e => setSearchParam(e.target.value)} />

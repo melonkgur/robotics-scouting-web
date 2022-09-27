@@ -9,13 +9,12 @@ import '../fonts.css';
 
 const useStyles = makeStyles(theme => ({
     addDataButton: {
-        backgroundColor: '#32a852',
-        color: '#ffffff',
-        position: 'absolute',
-        top: '1rem',
-        right: '1rem',
+        backgroundColor: '#ffffff',
+        color: '#000000',
+        textTransform: 'none',
         '&:hover': {
-            background: "#32a852",
+            background: "#E879F9",
+            color: '#ffffff'
         },
         fontFamily: 'medium',
     },
@@ -86,7 +85,8 @@ const QrCodePopup = (props) => {
                                     let oldTeamList = JSON.parse(localStorage.getItem('teamList'));
                                     console.log(oldTeamList, name);
                                     oldTeamList.push(JSON.parse(name));
-                                    localStorage.setItem('teamList', `[${JSON.stringify(oldTeamList)}]`);
+                                    
+                                    localStorage.setItem('teamList', `${JSON.stringify(oldTeamList)}`);
                                     localStorage.setItem(name, `[${JSON.stringify(data)}]`);
                                 }
                                 else {

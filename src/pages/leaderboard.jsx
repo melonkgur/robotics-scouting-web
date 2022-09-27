@@ -26,16 +26,16 @@ const Leaderboard = () => {
 
     const classes = useStyles();
 
-    const [columnDefs, setColumnDefs] = useState([
-        { field: "Team Number", sortable: true, filter: true, width: 150 },
-        { field: "High Goal Auto Average", sortable: true, filter: true, width: 220 },
-        { field: "Low Goal Auto Average", sortable: true, filter: true, width: 220 },
-        { field: "High Goal Teleop Average", sortable: true, filter: true, width: 220 },
-        { field: "Low Goal Teleop Average", sortable: true, filter: true, width: 220 },
-        { field: "Climbpoint Average", sortable: true, filter: true, width: 220 }
+    const [columnDefs] = useState([
+        { field: "Team Number", sortable: true },
+        { field: "High Goal Auto Average", sortable: true},
+        { field: "Low Goal Auto Average", sortable: true},
+        { field: "High Goal Teleop Average", sortable: true },
+        { field: "Low Goal Teleop Average", sortable: true },
+        { field: "Climbpoint Average", sortable: true },
     ]);
 
-    const [rowDefs, setRowDefs] = useState([]);
+    const [rowValues, setRowDefs] = useState([]);
 
     /* 
     JSON Format:
@@ -46,7 +46,6 @@ const Leaderboard = () => {
 
     useEffect(() => {
         let teams =  JSON.parse(localStorage.getItem('teamList'));
-        console.log(teams);
         teams.forEach(element => {
             let teamData = JSON.parse(localStorage.getItem(`${element}`));
             let gamesPlayed = teamData.length;
@@ -57,27 +56,27 @@ const Leaderboard = () => {
             let HighGoalTeleopTotal = 0;
             let LowGoalTeleopTotal = 0;
             let ClimberPointsTotal = 0;
+            let teamId = 0;
 
             teamData.forEach(game => {
-                HighGoalAutoTotal += game.highGoalAuto;
+                teamId = game.teamId;
+                HighGoalAutoTotal += game.highGoalx;
                 LowGoalAutoTotal += game.lowGoalAuto;
                 HighGoalTeleopTotal += game.highGoalOperated;
                 LowGoalTeleopTotal += game.lowGoalOperated;
             })
-            console.log(teamData, element);
-
             let teamJSON = {
-                "Team Number": element[0],
+                "Team Number": teamId,
                 "High Goal Auto Average": HighGoalAutoTotal/gamesPlayed,
                 "Low Goal Auto Average": LowGoalAutoTotal/gamesPlayed,
                 "High Goal Teleop Average": HighGoalTeleopTotal/gamesPlayed,
                 "Low Goal Teleop Average": LowGoalTeleopTotal/gamesPlayed,
-                "Climbpoint Average": ClimberPointsTotal/gamesPlayed
-
+                "Climbpoint Average": ClimberPointsTotal/gamesPlayed,
             };
-            setRowDefs(rowDefs.concat(teamJSON));
-            console.log(rowDefs);
-        })
+            rowValues.push(teamJSON);
+            
+        });
+        console.log(rowValues);
 
     }, [])
 
@@ -88,9 +87,11 @@ const Leaderboard = () => {
                 Team Overview
             </Typography>
             <div className="ag-theme-alpine-dark" style={{height: 600, width: 1200 }}>
+                {console.log(rowValues)}
+                {console.log(columnDefs)}
                 <AgGridReact 
+                    rowData={rowValues}
                     columnDefs={columnDefs}
-                    rowData={rowDefs}
                 />
             </div>
         </div>

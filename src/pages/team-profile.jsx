@@ -3,6 +3,8 @@ import { makeStyles, Typography } from '@material-ui/core';
 import BackButton from "../components/backbutton";
 import { useEffect, useState } from "react";
 
+import { getRungFromPoints } from '../helpers/calculations';
+
 import { AgGridReact } from "ag-grid-react";
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
@@ -51,6 +53,7 @@ const TeamProfile = () => {
     const [teleopRowData, setTeleopRowData] = useState([]);
 
 
+
     useEffect(() => {
         let data = [];
         data = localStorage.getItem(`${teamNumber.teamId}`);
@@ -60,7 +63,7 @@ const TeamProfile = () => {
                 "Match Number": element.matchId, 
                 "High Goal Teleop": element.highGoalOperated,
                 "Low Goal Teleop": element.lowGoalOperated,
-                "Rung Goal Teleop": element.rungClimedTo,
+                "Rung Climbed To": getRungFromPoints(element.rungClimedTo),
             };
             let currentAuto = {
                 "Match Number": element.matchId,
@@ -68,22 +71,21 @@ const TeamProfile = () => {
                 "Low Goal Auto": element.lowGoalAuto,
                 "Taxi": element.taxi
             }
-            console.log(JSON.parse(data));
-            setTeleopRowData(teleopRowData.concat(currentTeleop));
-            setAutoRowData(autoRowData.concat(currentAuto));
+            teleopRowData.push(currentTeleop);
+            autoRowData.push(currentAuto);
 
-        })
+        });
     }, []);
-
 
     return (
         <div className={classes.root}>
+
             {/*Fetches localstorage data depending on the team (react-router)*/}
             <BackButton title="Team List" lastPage="/#/central-computer" />
             <Typography variant="h2" className={classes.sectionTitle}>
                     Teleop
             </Typography>
-            <div className="ag-theme-alpine-dark" style={{height: 400, width: 1200 }}>
+            <div className="ag-theme-alpine-dark" style={{height: 250, width: 1200 }}>
                 <AgGridReact 
                     columnDefs={teleopColumnDefs}
                     rowData={teleopRowData}
@@ -92,7 +94,7 @@ const TeamProfile = () => {
             <Typography variant="h2" className={classes.sectionTitle}>
                     Autonomous
             </Typography>
-            <div className="ag-theme-alpine-dark" style={{height: 400, width: 1200 }}>
+            <div className="ag-theme-alpine-dark" style={{height: 250, width: 1200 }}>
                 <AgGridReact 
                     rowData={autoRowData}
                     columnDefs={autoColumnDefs}

@@ -45,7 +45,7 @@ const TeamGridItem = (props) => {
     useEffect(() => {
         let teamData = JSON.parse(localStorage.getItem(`${props.team}`));
         setTeamData(teamData);
-        let teamNumber = props.team[0].toString();
+        let teamNumber = props.team.toString();
 
         axios.get(`https://www.thebluealliance.com/api/v3/team/frc${teamNumber}`, {
             headers:  {
