@@ -160,7 +160,7 @@ const DataGraphs = () => {
             for (let j = 0; j < rawData.dataList[i].data.length && j < rawData.maxLength; j++) {
                 dat[j].push(rawData.dataList[i].data[j]);
             }
-            lines.push(<Line type="monotone" dataKey={rawData.dataList[i].name} stroke={worseIdea[i]} />); //replace worseIdea
+            lines.push(<Line type="monotone" key={i.toString()} dataKey={rawData.dataList[i].name} stroke={worseIdea[i]} />); //replace worseIdea
         }
 
         /*
@@ -244,7 +244,7 @@ const DataGraphs = () => {
                     <Line type="monotone" dataKey="b" stroke="#82ca9d" />*/}
                 </LineChart>
 
-                <Button title="summon lines" className={classes.buttonMain} onClick={ e => makeGraphData(testData) }>gaming</Button>
+                <Button title="summon lines" className={classes.buttonMain} onClick={ e => makeGraphData(testData) }>summon lines</Button>
             </div>
         </div>
     )
