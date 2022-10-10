@@ -52,8 +52,6 @@ const TeamProfile = () => {
 
     const [teleopRowData, setTeleopRowData] = useState([]);
 
-
-
     useEffect(() => {
         let data = [];
         data = localStorage.getItem(`${teamNumber.teamId}`);

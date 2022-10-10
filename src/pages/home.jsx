@@ -73,7 +73,11 @@ const Home = () => {
                 } 
                 </Typography >
                 {/* <Button variant="contained" className={classes.goToFieldButton}>Open Field</Button> */}
-                <Typography className={classes.linkText} variant="h5">0. <a className={classes.anchorLink} href="/#/scout">Scout</a><a style={{marginLeft: '3rem'}} className={classes.anchorLink} href="/#/central-computer">1. Central Computer</a></Typography>
+                <Typography className={classes.linkText} variant="h5">
+                    <a className={classes.anchorLink} href="/#/scout">0. Scout</a>
+                    <a style={{marginLeft: '3rem'}} className={classes.anchorLink} href="/#/central-computer">1. Central Computer</a>
+                    <a style={{marginLeft: '3rem'}} className={classes.anchorLink} href="/#/graphing">2. Graphing, maybe?</a>
+                </Typography>
                 {/* <Typography className={classes.linkText} variant="h5">1. <a className={classes.anchorLink} href="/central-computer">Central Computer</a></Typography> */}
             </div>
         </div>

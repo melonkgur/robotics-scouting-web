@@ -6,6 +6,7 @@ import { ThemeProvider } from '@material-ui/core';
 import theme from './helpers/theme';
 import TeamProfile from './pages/team-profile';
 import Leaderboard from './pages/leaderboard';
+import DataGraphs from './pages/graphs';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
               <Route path='/scout' element={ <Scout /> } exact />
               <Route path='/team-profile/:teamId' element={ <TeamProfile /> } exact />
               <Route path='/leaderboard' element={ <Leaderboard/> } exact />
+              <Route path='/graphing' element={ <DataGraphs/> } exact />
           </Routes>
         </ThemeProvider>
       </HashRouter>
