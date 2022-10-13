@@ -1,0 +1,9 @@
+@font-face {
+    font-family:"medium";
+    src: url("/public/SFNSDisplay-Medium.ttf") format("truetype");
+}
+
+@font-face {
+    font-family:"nice";
+    src: url("/public/JetBrainsMono-Light.ttf") format("truetype");
+}
